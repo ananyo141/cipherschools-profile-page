@@ -12,9 +12,6 @@ dist
 dist-ssr
 *.local
 
-# pre-commit husky files
-.husky/
-
 # secret files
 .env
 
