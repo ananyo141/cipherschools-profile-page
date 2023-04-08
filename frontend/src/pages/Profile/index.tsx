@@ -15,8 +15,8 @@ const ProfilePage = (props: Props) => {
       <div className="mx-auto mt-3 space-y-9 divide-y-2 bg-gray-300 p-5">
         <AboutMe />
         <CipherMap />
-        <ProfessionalInfo />
         <OnTheWeb />
+        <ProfessionalInfo />
       </div>
     </section>
   );
