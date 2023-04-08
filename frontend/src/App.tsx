@@ -6,7 +6,9 @@ import ProfilePage from "./pages/Profile";
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      <div className="relative z-50 h-12">
+        <Navbar className="fixed w-full bg-white" />
+      </div>
       <Router>
         <Routes>
           <Route path="/" element={<ProfilePage />} />
