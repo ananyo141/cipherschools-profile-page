@@ -14,7 +14,7 @@ const Navbar = (props: Props) => {
       <div className="flex items-center gap-2">
         <img src={logo} className="h-12 w-12" alt="logo" />
         <h1>CipherSchools</h1>
-        <AiOutlineCompass />
+        <AiOutlineCompass className="ml-5" />
         <h2>Browse</h2>
         <AiOutlineDown />
       </div>
