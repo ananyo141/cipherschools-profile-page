@@ -1,9 +1,15 @@
+import SectionHeading from "../../components/SectionHeading";
+import EditButton from "../../components/EditButton";
+
 type Props = {};
 
 const ProfessionalInfo = (props: Props) => {
   return (
     <div>
-      <h2 className="my-6 font-bold uppercase">Professional Information</h2>
+      <div className="flex justify-between">
+        <SectionHeading>Professional Information</SectionHeading>
+        <EditButton />
+      </div>
       <div className="flex gap-4">
         <div className="w-1/2">
           <h3 className="text-lg">Highest Education</h3>

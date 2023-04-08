@@ -1,5 +1,8 @@
 import HeatMap from "@uiw/react-heat-map";
 
+import SectionHeading from "../../components/SectionHeading";
+import EditButton from "../../components/EditButton";
+
 type Props = {};
 
 const value = [
@@ -20,7 +23,10 @@ const value = [
 const CipherMap = (props: Props) => {
   return (
     <div>
-      <h2 className="mt-5 text-lg font-bold">Cipher Map</h2>
+      <div className="flex justify-between">
+        <SectionHeading>Cipher Map</SectionHeading>
+        <EditButton />
+      </div>
       <HeatMap
         value={value as any}
         className="h-72 w-full font-bold"

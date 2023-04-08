@@ -1,9 +1,15 @@
+import SectionHeading from "../../components/SectionHeading";
+import EditButton from "../../components/EditButton";
+
 type Props = {};
 
 const Password = (props: Props) => {
   return (
     <div>
-      <h3 className="py-2 text-lg font-bold">Password</h3>
+      <div className="flex justify-between">
+        <SectionHeading>Password & security</SectionHeading>
+        <EditButton label="Change" />
+      </div>
       <input
         type="password"
         className="my-2 w-full rounded-md bg-white p-3"

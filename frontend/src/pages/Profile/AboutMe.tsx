@@ -1,9 +1,15 @@
+import SectionHeading from "../../components/SectionHeading";
+import EditButton from "../../components/EditButton";
+
 type Props = {};
 
 const AboutMe = (props: Props) => {
   return (
     <div>
-      <h2 className="text-lg font-bold uppercase">About Me</h2>
+      <div className="flex justify-between">
+        <SectionHeading>About Me</SectionHeading>
+        <EditButton />
+      </div>
       <div className="m-3 rounded-md bg-gray-100 p-6">
         CipherSchools is a potential Multi-Billion Dollar Organization founded
         in 2020 with a vision to be amongst the Top 10 Organizations in the
