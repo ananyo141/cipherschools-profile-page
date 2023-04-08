@@ -10,9 +10,9 @@ const ProfilePage = (props: Props) => {
   return (
     <section>
       <div className="relative h-44">
-        <Header className="fixed w-full bg-white" />
+        <Header className="fixed w-full bg-white shadow-md" />
       </div>
-      <div className="mx-auto space-y-9 divide-y-2 bg-gray-300 p-5">
+      <div className="mx-auto mt-3 space-y-9 divide-y-2 bg-gray-300 p-5">
         <AboutMe />
         <CipherMap />
         <ProfessionalInfo />

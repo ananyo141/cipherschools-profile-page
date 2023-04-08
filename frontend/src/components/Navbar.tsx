@@ -12,7 +12,7 @@ type Props = {
 const Navbar = (props: Props) => {
   return (
     <nav className={props.className}>
-      <div className="mt-2 flex justify-between px-4">
+      <div className="my-2 flex justify-between px-4">
         {/* left side */}
         <div className="flex items-center gap-2">
           <img src={logo} className="h-12 w-12" alt="logo" />

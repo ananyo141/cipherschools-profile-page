@@ -9,7 +9,7 @@ type Props = {
 const Header = (props: Props) => {
   return (
     <div className={props.className}>
-      <div className="bg-[url('assets/profile_bg.png')] bg-cover bg-center">
+      <div className="mt-4 bg-[url('assets/profile_bg.png')] bg-cover bg-center">
         <div className="flex justify-between">
           <div className="bg-gradient-to-r from-white to-transparent p-6">
             <div className="relative flex gap-8">
