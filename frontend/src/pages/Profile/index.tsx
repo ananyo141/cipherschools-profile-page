@@ -3,6 +3,8 @@ import Header from "./Header";
 import CipherMap from "./CipherMap";
 import OnTheWeb from "./OnTheWeb";
 import ProfessionalInfo from "./ProfessionalInfo";
+import Password from "./Password";
+import Interests from "./Interests";
 
 type Props = {};
 
@@ -17,6 +19,8 @@ const ProfilePage = (props: Props) => {
         <CipherMap />
         <OnTheWeb />
         <ProfessionalInfo />
+        <Password />
+        <Interests />
       </div>
     </section>
   );
