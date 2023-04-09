@@ -4,12 +4,21 @@ import {
   getUsers,
   getUserInfo,
   deleteUser,
-  putUser,
+  patchUser,
 } from "../controllers/userControllers";
+import { authenticateToken } from "../middleware/authenticateToken";
 
 const userRouter = express.Router();
 
+userRouter.use(authenticateToken);
 userRouter.route("/").get(getUsers);
-userRouter.route("/:userId").get(getUserInfo).delete(deleteUser).put(putUser);
+userRouter
+  .route("/profile")
+  .get(getUserInfo)
+  .delete(deleteUser)
+  .patch(patchUser);
+userRouter.route("/password").post(changePassword);
+userRouter.route("/interests").post(addInterests);
+userRouter.route("/followers").get(getFollowers);
 
 export default userRouter;

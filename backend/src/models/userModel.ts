@@ -1,13 +1,25 @@
+import { NextFunction } from "express";
 import mongoose, { Document, Model } from "mongoose";
 import bcrypt from "bcrypt";
-
-import { NextFunction } from "express";
 
 // Type definitions for typescript
 export interface UserDocument extends Document {
   name: string;
   email: string;
   password: string;
+
+  // user details
+  followers: [string];
+  facebookId: string;
+  twitterId: string;
+  instagramId: string;
+  linkedinId: string;
+  githubId: string;
+  website: string;
+  highestEducation: string;
+  currentWork: string;
+  interests: string;
+
   role: string;
   comparePassword: (
     candidatePassword: string,
@@ -30,15 +42,53 @@ const userSchema = new mongoose.Schema({
     trim: true,
     unique: true,
   },
-  mobile: {
-    type: String,
-    trim: true,
-  },
   password: {
     type: String,
     required: [true, "Please provide a password"],
     minlength: [6, "Password must be at least 6 characters"],
   },
+  // user details
+  aboutMe: {
+    type: String,
+    maxlength: [500, "About me cannot be more than 500 characters"],
+  },
+  followers: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "User",
+    default: [],
+  },
+  facebookId: String,
+  twitterId: String,
+  instagramId: String,
+  linkedinId: String,
+  githubId: String,
+  website: String,
+  highestEducation: {
+    type: String,
+    enum: ["none", "highschool", "bachelors", "masters", "phd"],
+    default: "none",
+  },
+  currentWork: {
+    type: String,
+    enum: ["none", "schooling", "college", "teaching", "job", "freelancing"],
+    default: "none",
+  },
+  interests: {
+    type: [String],
+    enum: [
+      "none",
+      "app",
+      "web",
+      "game",
+      "dsa",
+      "programming",
+      "machine learning",
+      "data science",
+      "others",
+    ],
+    default: ["none"],
+  },
+
   // user permissions
   role: {
     type: String,
