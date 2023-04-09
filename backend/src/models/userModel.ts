@@ -1,5 +1,6 @@
 import { NextFunction } from "express";
 import mongoose, { Document, Model } from "mongoose";
+import paginate from "mongoose-paginate-v2";
 import bcrypt from "bcrypt";
 
 // Type definitions for typescript
@@ -9,7 +10,7 @@ export interface UserDocument extends Document {
   password: string;
 
   // user details
-  followers: [string];
+  followers: [UserDocument];
   facebookId: string;
   twitterId: string;
   instagramId: string;
@@ -27,7 +28,9 @@ export interface UserDocument extends Document {
   ) => Promise<boolean>;
 }
 
-export interface UserModel extends Model<UserDocument> {}
+export interface UserModel extends Model<UserDocument> {
+  paginate: CallableFunction;
+}
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -35,6 +38,7 @@ const userSchema = new mongoose.Schema({
     required: [true, "Please provide a name"],
     trim: true,
     maxlength: [50, "Name cannot be more than 50 characters"],
+    unique: true,
   },
   email: {
     type: String,
@@ -113,6 +117,8 @@ userSchema.methods.comparePassword = async function (
 ) {
   return await bcrypt.compare(candidatePassword, this.password).catch(next);
 };
+
+userSchema.plugin(paginate);
 
 const User = mongoose.model<UserDocument, UserModel>("User", userSchema);
 export default User;

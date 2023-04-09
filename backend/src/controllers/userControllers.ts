@@ -18,13 +18,13 @@ export const getUsers = asyncWrapper(
 
 export const getUserInfo = asyncWrapper(
   async (_req: Request, _res: Response, _next: NextFunction) => {
-    const user = await UserModel.findById(_req.user);
+    const user = await UserModel.findById(_req.user).select(
+      "-password -_id -__v"
+    );
     if (!user) {
       return _next(new CustomError.NotFoundError("User not found"));
     }
-    _res
-      .status(StatusCodes.OK)
-      .json({ name: user.name, email: user.email, id: user._id });
+    _res.status(StatusCodes.OK).json(user);
   }
 );
 
@@ -95,9 +95,9 @@ export const changePassword = asyncWrapper(
 
 export const followUser = asyncWrapper(
   async (_req: Request, _res: Response, _next: NextFunction) => {
-    const { id } = _req.params;
+    const { username } = _req.params;
     const user = await UserModel.findById(_req.user);
-    const userToFollow = await UserModel.findById(id);
+    const userToFollow = await UserModel.findOne({ name: username });
     if (!user || !userToFollow) {
       return _next(new CustomError.NotFoundError("User not found"));
     }
@@ -112,9 +112,9 @@ export const followUser = asyncWrapper(
 
 export const unfollowUser = asyncWrapper(
   async (_req: Request, _res: Response, _next: NextFunction) => {
-    const { id } = _req.params;
+    const { username } = _req.params;
     const user = await UserModel.findById(_req.user);
-    const userToUnfollow = await UserModel.findById(id);
+    const userToUnfollow = await UserModel.findOne({ name: username });
     if (!user || !userToUnfollow) {
       return _next(new CustomError.NotFoundError("User not found"));
     }
@@ -133,16 +133,31 @@ export const getFollowers = asyncWrapper(
     if (!user) {
       return _next(new CustomError.NotFoundError("User not found"));
     }
-    const followers = await UserModel.find({
-      _id: { $in: user.followers },
-    });
-    const normalizedFollowers = followers.map((user) => {
-      return {
-        name: user.name,
-        email: user.email,
-        id: user._id,
-      };
-    });
-    _res.status(StatusCodes.OK).json(normalizedFollowers);
+    const { page = 1, limit = 10 } = _req.query;
+    try {
+      const paginatedFollowers = await UserModel.paginate(
+        { _id: { $in: user.followers } },
+        {
+          page: Number(page),
+          limit: Number(limit),
+        }
+      );
+      _res.status(StatusCodes.OK).json(paginatedFollowers);
+    } catch (err: any) {
+      _next(new CustomError.InternalServerError(err.message));
+    }
+  }
+);
+
+export const addInterests = asyncWrapper(
+  async (_req: Request, _res: Response, _next: NextFunction) => {
+    const { interests } = _req.body;
+    const user = await UserModel.findById(_req.user).select("interests");
+    if (!user) {
+      return _next(new CustomError.NotFoundError("User not found"));
+    }
+    user.interests = interests;
+    await user.save();
+    _res.status(StatusCodes.OK).json(user);
   }
 );
