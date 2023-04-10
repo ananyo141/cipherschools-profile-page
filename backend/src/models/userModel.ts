@@ -10,6 +10,7 @@ export interface UserDocument extends Document {
   password: string;
 
   // user details
+  aboutMe: string;
   followers: [UserDocument];
   facebookId: string;
   twitterId: string;
@@ -55,18 +56,19 @@ const userSchema = new mongoose.Schema({
   aboutMe: {
     type: String,
     maxlength: [500, "About me cannot be more than 500 characters"],
+    default: null,
   },
   followers: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: "User",
     default: [],
   },
-  facebookId: String,
-  twitterId: String,
-  instagramId: String,
-  linkedinId: String,
-  githubId: String,
-  website: String,
+  facebookId: { type: String, default: null },
+  twitterId: { type: String, default: null },
+  instagramId: { type: String, default: null },
+  linkedinId: { type: String, default: null },
+  githubId: { type: String, default: null },
+  website: { type: String, default: null },
   highestEducation: {
     type: String,
     enum: ["none", "highschool", "bachelors", "masters", "phd"],
