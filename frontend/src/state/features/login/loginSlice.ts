@@ -9,20 +9,44 @@ import {
 
 interface LoginState {
   isLoggedIn: boolean;
-  name: string | null;
-  email: string | null;
   accessToken: string | null;
   isLoading: boolean;
   error: string | null;
+
+  // user info
+  name: string | null;
+  email: string | null;
+  aboutMe: string | null;
+  followers: [string] | null;
+  facebookId: string | null;
+  twitterId: string | null;
+  instagramId: string | null;
+  linkedinId: string | null;
+  githubId: string | null;
+  website: string | null;
+  highestEducation: string | null;
+  currentWork: string | null;
+  interests: string | null;
 }
 
 const initialState: LoginState = {
   isLoggedIn: false,
-  name: null,
-  email: null,
   accessToken: null,
   isLoading: false,
   error: null,
+  name: null,
+  email: null,
+  aboutMe: null,
+  followers: null,
+  facebookId: null,
+  twitterId: null,
+  instagramId: null,
+  linkedinId: null,
+  githubId: null,
+  website: null,
+  highestEducation: null,
+  currentWork: null,
+  interests: null,
 };
 
 const loginSlice = createSlice({
@@ -80,6 +104,17 @@ const loginSlice = createSlice({
         state.name = action.payload.name;
         state.email = action.payload.email;
         state.accessToken = action.payload.accessToken;
+        state.aboutMe = action.payload.aboutMe;
+        state.followers = action.payload.followers;
+        state.facebookId = action.payload.facebookId;
+        state.twitterId = action.payload.twitterId;
+        state.instagramId = action.payload.instagramId;
+        state.linkedinId = action.payload.linkedinId;
+        state.githubId = action.payload.githubId;
+        state.website = action.payload.website;
+        state.highestEducation = action.payload.highestEducation;
+        state.currentWork = action.payload.currentWork;
+        state.interests = action.payload.interests;
       })
       .addCase(loadLoginInfo.rejected, (_) => {
         return initialState;
