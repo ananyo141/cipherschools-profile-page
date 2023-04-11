@@ -1,3 +1,4 @@
+import { useAppSelector } from "../../hooks/useReduxHooks";
 import { MdModeEdit } from "react-icons/md";
 
 import logo from "../../assets/logo.png";
@@ -7,6 +8,8 @@ type Props = {
 };
 
 const Header = (props: Props) => {
+  const { name, email, followers } = useAppSelector((state) => state.login);
+
   return (
     <div className={props.className}>
       <div className="mt-4 bg-[url('assets/profile_bg.png')] bg-cover bg-center">
@@ -20,13 +23,15 @@ const Header = (props: Props) => {
               />
               <div>
                 <p className="text-xl">Hello,</p>
-                <p className="text-3xl font-bold">CipherSchools</p>
-                <p className="text-lg italic">*******@cipherschools.com</p>
+                <p className="text-3xl font-bold">{name}</p>
+                <p className="text-lg italic">{email}</p>
               </div>
             </div>
           </div>
           <div className="flex items-center bg-gradient-to-r from-transparent to-white px-20 py-6">
-            <h3 className="text-xl font-medium">234 Followers</h3>
+            <h3 className="text-xl font-medium">
+              {followers?.length ?? 0} Followers
+            </h3>
           </div>
         </div>
       </div>

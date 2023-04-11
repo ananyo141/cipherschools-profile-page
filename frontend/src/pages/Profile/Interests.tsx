@@ -1,17 +1,12 @@
 import SectionHeading from "../../components/SectionHeading";
 import EditButton from "../../components/EditButton";
 import InterestTile from "../../components/InterestTile";
+import { useAppSelector } from "../../hooks/useReduxHooks";
 
 type Props = {};
 
-const interests = [
-  "Web Development",
-  "App Development",
-  "Machine Learning",
-  "Data Structures",
-];
-
 const Interests = (props: Props) => {
+  const { interests } = useAppSelector((state) => state.login);
   return (
     <div>
       <div className="flex justify-between">
@@ -19,7 +14,7 @@ const Interests = (props: Props) => {
         <EditButton label="Edit" />
       </div>
       <div className="flex flex-wrap gap-4">
-        {interests.map((interest) => (
+        {interests?.map((interest: string) => (
           <InterestTile category={interest} />
         ))}
       </div>

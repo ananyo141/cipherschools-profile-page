@@ -1,9 +1,13 @@
 import SectionHeading from "../../components/SectionHeading";
 import EditButton from "../../components/EditButton";
+import { useAppSelector } from "../../hooks/useReduxHooks";
 
 type Props = {};
 
 const ProfessionalInfo = (props: Props) => {
+  const { highestEducation, currentWork } = useAppSelector(
+    (state) => state.login
+  );
   return (
     <div>
       <div className="flex justify-between">
@@ -15,7 +19,7 @@ const ProfessionalInfo = (props: Props) => {
           <h3 className="text-lg">Highest Education</h3>
           <select
             className="my-2 w-full rounded-md p-3"
-            defaultValue="bachelors"
+            defaultValue={highestEducation?.toString()}
           >
             <option value="none">None</option>
             <option value="highschool">High School</option>
@@ -26,7 +30,10 @@ const ProfessionalInfo = (props: Props) => {
         </div>
         <div className="w-1/2">
           <h3 className="text-lg">What do you do currently?</h3>
-          <select className="my-2 w-full rounded-md p-3" defaultValue="college">
+          <select
+            className="my-2 w-full rounded-md p-3"
+            defaultValue={currentWork?.toString()}
+          >
             <option value="schooling">Schooling</option>
             <option value="college">College student</option>
             <option value="teaching">Teaching</option>

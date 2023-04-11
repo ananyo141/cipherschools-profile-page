@@ -3,6 +3,7 @@ import React from "react";
 type Props = {
   title: string;
   icon: React.ReactNode;
+  link: string;
 };
 
 const SocialLink = (props: Props) => {
@@ -15,6 +16,7 @@ const SocialLink = (props: Props) => {
           type="text"
           className="ml-2 w-full bg-gray-100 focus:outline-none"
           placeholder={props.title}
+          value={props.link}
         />
       </div>
     </div>

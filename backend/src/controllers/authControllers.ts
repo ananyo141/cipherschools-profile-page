@@ -41,13 +41,13 @@ export const registerController = asyncWrapper(
         new CustomErrors.BadRequestError("Please provide all required fields")
       );
 
-    let user = await User.findOne({
-      email: _req.body.email,
-    });
-    if (user)
+    if (
+      (await User.findOne({ email: _req.body.email })) ||
+      (await User.findOne({ name: _req.body.name }))
+    )
       return _next(new CustomErrors.BadRequestError("User already exists"));
     else {
-      user = await User.create(_req.body);
+      const user = await User.create(_req.body);
       const accessToken = genAccessToken(user);
       const refreshToken = genRefreshToken(user);
       _res.status(StatusCodes.CREATED).json({

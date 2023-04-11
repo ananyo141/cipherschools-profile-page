@@ -26,7 +26,7 @@ interface LoginState {
   website: string | null;
   highestEducation: string | null;
   currentWork: string | null;
-  interests: string | null;
+  interests: string[] | null;
 }
 
 const initialState: LoginState = {
