@@ -7,6 +7,8 @@ import {
   ACCESS_TOKEN,
 } from "./authThunks";
 
+import { userUpdate } from "./userThunks";
+
 interface LoginState {
   isLoggedIn: boolean;
   accessToken: string | null;
@@ -118,6 +120,29 @@ const loginSlice = createSlice({
       })
       .addCase(loadLoginInfo.rejected, (_) => {
         return initialState;
+      });
+
+    // Update user
+    builder
+      .addCase(userUpdate.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(userUpdate.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.aboutMe = action.payload.aboutMe;
+        state.facebookId = action.payload.facebookId;
+        state.twitterId = action.payload.twitterId;
+        state.instagramId = action.payload.instagramId;
+        state.linkedinId = action.payload.linkedinId;
+        state.githubId = action.payload.githubId;
+        state.website = action.payload.website;
+        state.highestEducation = action.payload.highestEducation;
+        state.currentWork = action.payload.currentWork;
+        state.interests = action.payload.interests;
+      })
+      .addCase(userUpdate.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message ?? "Something went wrong";
       });
   },
 });

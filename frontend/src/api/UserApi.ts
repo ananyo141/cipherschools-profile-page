@@ -3,7 +3,7 @@ import axios from "axios";
 import { resolve } from "../utils/resolve";
 import { USERSURL } from "../api/Routes";
 
-interface UserAttrs {
+export interface UserAttrs {
   aboutMe?: string;
   linkedinId?: string;
   githubId?: string;
@@ -15,9 +15,16 @@ interface UserAttrs {
   currentWork?: string;
 }
 
-export const userUpdate = async (attrs: UserAttrs): Promise<any> => {
+export const userUpdate = async (
+  accessToken: string,
+  attrs: UserAttrs
+): Promise<any> => {
   const [error, response] = await resolve(
-    axios.patch(`${USERSURL}/profile`, attrs)
+    axios.patch(`${USERSURL}/profile`, attrs, {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    })
   );
   if (error) {
     throw error;
