@@ -25,7 +25,10 @@ function App() {
       </div>
       <Router>
         <Routes>
-          <Route path="/" element={<ProfilePage />} />
+          <Route
+            path="/"
+            element={isLoggedIn ? <ProfilePage /> : <LoginPage />}
+          />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<Signup />} />
           <Route path="/profile" element={<div>Profile</div>} />
