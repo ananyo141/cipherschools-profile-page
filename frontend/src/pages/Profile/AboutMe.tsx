@@ -39,7 +39,7 @@ const AboutMe = (props: Props) => {
           label={isEditing ? "Save" : "Edit"}
         />
       </div>
-      <input
+      <textarea
         className="m-3 w-full rounded-md bg-gray-100 p-6"
         onChange={(e) => setAboutMeText(e.target.value)}
         value={aboutMeText}

@@ -2,7 +2,7 @@
   "name": "cipherschools-profile-page",
   "version": "1.0.0",
   "author": "Ananyobrata Pal <ananyo141@gmail.com>",
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "devDependencies": {
     "husky": "^8.0.0",
     "prettier": "^2.8.7",
