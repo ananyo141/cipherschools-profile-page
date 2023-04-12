@@ -6,6 +6,7 @@ import LoginPage from "./pages/Login";
 import ProfilePage from "./pages/Profile";
 import Signup from "./pages/Signup";
 import NoPage from "./pages/NoPage";
+import PasswordModal from "./components/PasswordModal";
 
 import { useAppDispatch, useAppSelector } from "./hooks/useReduxHooks";
 import { loadLoginInfo } from "./state/features/login/loginSlice";
@@ -36,6 +37,7 @@ function App() {
           <Route path="*" element={<NoPage />} />
         </Routes>
       </Router>
+      <PasswordModal />
     </div>
   );
 }

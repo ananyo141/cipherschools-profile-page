@@ -15,3 +15,14 @@ export const userUpdate = createAsyncThunk(
     return response;
   }
 );
+
+export const userUpdatePassword = createAsyncThunk(
+  "user/userUpdatePassword",
+  async (payload: { password: string; accessToken: string }, thunkAPI) => {
+    const [error, response] = await resolve(
+      UserApi.userUpdatePassword(payload.accessToken, payload.password)
+    );
+    if (error) return thunkAPI.rejectWithValue(error.message);
+    return response;
+  }
+);

@@ -7,7 +7,7 @@ import {
   ACCESS_TOKEN,
 } from "./authThunks";
 
-import { userUpdate } from "./userThunks";
+import { userUpdate, userUpdatePassword } from "./userThunks";
 
 interface LoginState {
   isLoggedIn: boolean;
@@ -141,6 +141,19 @@ const loginSlice = createSlice({
         state.interests = action.payload.interests;
       })
       .addCase(userUpdate.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message ?? "Something went wrong";
+      });
+
+    // Update user password
+    builder
+      .addCase(userUpdatePassword.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(userUpdatePassword.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(userUpdatePassword.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message ?? "Something went wrong";
       });

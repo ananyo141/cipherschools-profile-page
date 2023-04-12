@@ -9,7 +9,7 @@ const EditButton = ({ label = "Edit", onClick }: Props) => {
       onClick={onClick}
       className="my-6 w-24 min-w-fit cursor-pointer rounded-md bg-lemon-400 py-1 text-sm text-white"
     >
-      <button className="mx-auto block tracking-tight">{label}</button>
+      <p className="text-center tracking-tight">{label}</p>
     </div>
   );
 };

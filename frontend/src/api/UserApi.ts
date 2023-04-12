@@ -31,3 +31,24 @@ export const userUpdate = async (
   }
   return response.data;
 };
+
+export const userUpdatePassword = async (
+  accessToken: string,
+  password: string
+): Promise<any> => {
+  const [error, response] = await resolve(
+    axios.patch(
+      `${USERSURL}/password`,
+      { password },
+      {
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+        },
+      }
+    )
+  );
+  if (error) {
+    throw error;
+  }
+  return response.data;
+};
