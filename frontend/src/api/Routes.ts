@@ -1,6 +1,5 @@
 // start url
-export const HOSTPORT = 8000;
-export const HOSTURL = `http://localhost:${HOSTPORT}`;
+export const HOSTURL = `https://api-cipherschools.onrender.com`;
 export const BASEURL = `${HOSTURL}/api/v1`;
 
 // routes

@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from "./hooks/useReduxHooks";
 import { loadLoginInfo } from "./state/features/login/loginSlice";
 
 function App() {
-  const isLoggedIn = useAppSelector((state) => state.login.isLoggedIn);
+  const { isLoggedIn, isLoading } = useAppSelector((state) => state.login);
   const dispatch = useAppDispatch();
 
   React.useEffect(() => {
@@ -21,6 +21,12 @@ function App() {
 
   return (
     <div className="App overflow-clip">
+      {isLoading && (
+        <div className="flex h-screen w-screen flex-col items-center justify-center gap-4">
+          <h1 className="text-3xl font-bold">Loading...</h1>
+          <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-t-2 border-gray-900 "></div>
+        </div>
+      )}
       <Router>
         {isLoggedIn && (
           <div className="relative z-50 h-12">
