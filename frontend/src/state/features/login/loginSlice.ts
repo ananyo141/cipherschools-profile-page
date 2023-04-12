@@ -133,6 +133,8 @@ const loginSlice = createSlice({
       })
       .addCase(userUpdate.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.name = action.payload.name;
+        state.email = action.payload.email;
         state.aboutMe = action.payload.aboutMe;
         state.facebookId = action.payload.facebookId;
         state.twitterId = action.payload.twitterId;

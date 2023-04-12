@@ -1,8 +1,9 @@
-import { useAppSelector } from "../../hooks/useReduxHooks";
 import { MdModeEdit } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 import logo from "../../assets/logo.png";
-import { Link } from "react-router-dom";
+import { useAppSelector } from "../../hooks/useReduxHooks";
+import ProfileUpdateModal from "../../components/ProfileUpdateModal";
 
 type Props = {
   className?: string;
@@ -13,15 +14,18 @@ const Header = (props: Props) => {
 
   return (
     <div className={props.className}>
+      <ProfileUpdateModal modalId="profileModal" />
       <div className="mt-4 bg-[url('assets/profile_bg.png')] bg-cover bg-center">
         <div className="flex justify-between">
           <div className="bg-gradient-to-r from-white to-transparent p-6">
             <div className="relative flex gap-8">
               <img src={logo} className="h-32 w-32" alt="logo" />
-              <MdModeEdit
-                color="white"
-                className="absolute -bottom-4 left-12 h-9 w-9 cursor-pointer rounded-full bg-[#222831] p-1 text-2xl text-white"
-              />
+              <label htmlFor="profileModal" className="cursor-pointer">
+                <MdModeEdit
+                  color="white"
+                  className="absolute -bottom-4 left-12 h-9 w-9 cursor-pointer rounded-full bg-[#222831] p-1 text-2xl text-white"
+                />
+              </label>
               <div>
                 <p className="text-xl">Hello,</p>
                 <p className="text-3xl font-bold">{name}</p>

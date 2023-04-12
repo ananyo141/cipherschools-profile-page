@@ -4,6 +4,8 @@ import { resolve } from "../utils/resolve";
 import { USERSURL } from "../api/Routes";
 
 export interface UserAttrs {
+  email?: string;
+  name?: string;
   aboutMe?: string;
   linkedinId?: string;
   githubId?: string;
