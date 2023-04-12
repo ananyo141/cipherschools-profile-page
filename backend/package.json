@@ -5,7 +5,7 @@
   "license": "GPL-3.0-or-later",
   "author": "Ananyobrata Pal <ananyo141@gmail.com>",
   "scripts": {
-    "start": "tsc && node build/app.js",
+    "start": "ts-node ./src/app.ts",
     "dev": "nodemon ./src/app.ts",
     "server": "ts-node ./src/app.ts"
   },
