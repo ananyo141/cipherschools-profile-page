@@ -53,3 +53,24 @@ export const userUpdatePassword = async (
   }
   return response.data;
 };
+
+export const userUpdateInterests = async (
+  accessToken: string,
+  interests: string[]
+): Promise<any> => {
+  const [error, response] = await resolve(
+    axios.post(
+      `${USERSURL}/interests`,
+      { interests },
+      {
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+        },
+      }
+    )
+  );
+  if (error) {
+    throw error;
+  }
+  return response.data;
+};

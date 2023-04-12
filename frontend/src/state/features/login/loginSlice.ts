@@ -7,7 +7,11 @@ import {
   ACCESS_TOKEN,
 } from "./authThunks";
 
-import { userUpdate, userUpdatePassword } from "./userThunks";
+import {
+  userUpdate,
+  userUpdatePassword,
+  userUpdateInterests,
+} from "./userThunks";
 
 interface LoginState {
   isLoggedIn: boolean;
@@ -28,7 +32,7 @@ interface LoginState {
   website: string | null;
   highestEducation: string | null;
   currentWork: string | null;
-  interests: string[] | null;
+  interests: string[];
 }
 
 const initialState: LoginState = {
@@ -48,7 +52,7 @@ const initialState: LoginState = {
   website: null,
   highestEducation: null,
   currentWork: null,
-  interests: null,
+  interests: [],
 };
 
 const loginSlice = createSlice({
@@ -154,6 +158,20 @@ const loginSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(userUpdatePassword.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message ?? "Something went wrong";
+      });
+
+    // update interests
+    builder
+      .addCase(userUpdateInterests.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(userUpdateInterests.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.interests = action.payload.interests;
+      })
+      .addCase(userUpdateInterests.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message ?? "Something went wrong";
       });

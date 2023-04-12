@@ -36,3 +36,19 @@ export const userUpdatePassword = createAsyncThunk(
     return response;
   }
 );
+
+interface UserUpdateInterestsPayload {
+  accessToken: string;
+  interests: string[];
+}
+
+export const userUpdateInterests = createAsyncThunk(
+  "user/userUpdateInterests",
+  async (payload: UserUpdateInterestsPayload, thunkAPI) => {
+    const [error, response] = await resolve(
+      UserApi.userUpdateInterests(payload.accessToken, payload.interests)
+    );
+    if (error) return thunkAPI.rejectWithValue(error.message);
+    return response;
+  }
+);
