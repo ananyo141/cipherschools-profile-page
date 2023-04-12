@@ -4,6 +4,8 @@ type Props = {
   title: string;
   icon: React.ReactNode;
   link: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isDisabled?: boolean;
 };
 
 const SocialLink = (props: Props) => {
@@ -17,6 +19,8 @@ const SocialLink = (props: Props) => {
           className="ml-2 w-full bg-gray-100 focus:outline-none"
           placeholder={props.title}
           value={props.link}
+          onChange={props.onChange}
+          disabled={props.isDisabled ?? false}
         />
       </div>
     </div>
