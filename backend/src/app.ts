@@ -26,16 +26,21 @@ app.use("/api/v1/auth", authRouter);
 app.use(routeNotFound);
 app.use(errorHandler);
 
-const port = process.env.PORT || 8000;
-const start = async () => {
+const connectDB = async () => {
   try {
-    app.listen(port, () => {
-      console.log("Connected to MongoDB");
-      mongoose.connect(process.env.MONGO_URI!);
-    });
-  } catch (err) {
-    console.error(err);
+    const conn = await mongoose.connect(process.env.MONGO_URI!);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
   }
 };
 
-start();
+const port = process.env.PORT || 3000;
+
+//Connect to the database before listening
+connectDB().then(() => {
+  app.listen(port, () => {
+    console.log("listening for requests");
+  });
+});
