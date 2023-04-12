@@ -6,7 +6,8 @@
   "author": "Ananyobrata Pal <ananyo141@gmail.com>",
   "scripts": {
     "start": "tsc && node build/app.js",
-    "dev": "nodemon ./src/app.ts"
+    "dev": "nodemon ./src/app.ts",
+    "server": "ts-node ./src/app.ts"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
