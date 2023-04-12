@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { HiOutlineInformationCircle } from "react-icons/hi";
+
 import { useAppDispatch } from "../../hooks/useReduxHooks";
 import { loginUser } from "../../state/features/login/loginSlice";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,6 +14,7 @@ const LoginPage = (props: Props) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginInfo, setLoginInfo] = useState<string | null>(null);
 
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -19,7 +22,7 @@ const LoginPage = (props: Props) => {
       await dispatch(loginUser({ email, password })).unwrap();
       navigator("/"); // navigate to home page
     } catch (err: any) {
-      console.log("unsuccessful", err);
+      setLoginInfo("Invalid email or password");
     }
   };
 
@@ -64,7 +67,13 @@ const LoginPage = (props: Props) => {
                 required
               />
             </div>
-            <div className="mt-2 text-right">
+            <div className="mt-2 flex flex-wrap justify-between gap-4">
+              {loginInfo && (
+                <p className="text-sm text-red-600">
+                  <HiOutlineInformationCircle className="mr-3 inline scale-125" />
+                  {loginInfo ? loginInfo : null}
+                </p>
+              )}
               <a
                 href="#"
                 className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700"

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { HiOutlineInformationCircle } from "react-icons/hi";
 
 import { useAppDispatch } from "../../hooks/useReduxHooks";
 import { registerUser } from "../../state/features/login/loginSlice";
@@ -13,22 +14,21 @@ const Signup = (props: Props) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [registerInfo, setRegisterInfo] = useState<string | null>(null);
 
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // If password is less than 6 characters,
     // show error modal
     if (password.length < 6) {
-      console.log("password is too short");
+      setRegisterInfo("password is too short");
       return;
     }
     try {
       await dispatch(registerUser({ name, email, password })).unwrap();
-      setTimeout(() => {
-        navigator("/"); // navigate to home page
-      }, 2000);
+      navigator("/"); // navigate to home page
     } catch (error: any) {
-      console.log(error);
+      setRegisterInfo("User already exists");
     }
   };
 
@@ -88,8 +88,14 @@ const Signup = (props: Props) => {
                     onChange={(e) => setPassword(e.target.value)}
                     className="mb-0 ml-0 mr-0 mt-2 block w-full rounded-md border border-gray-300 bg-white pb-4 pl-4 pr-4 pt-4 text-base placeholder-gray-400 focus:border-black focus:outline-none"
                   />
+                  {registerInfo && (
+                    <p className="mt-3 text-sm text-red-600">
+                      <HiOutlineInformationCircle className="mr-3 inline scale-125" />
+                      {registerInfo ? registerInfo : null}
+                    </p>
+                  )}
                 </div>
-                <div className="relative">
+                <div className="relative space-y-5">
                   <button
                     type="submit"
                     className="ease inline-block w-full rounded-lg bg-indigo-500 pb-4 pl-5 pr-5 pt-4 text-center text-xl font-medium text-white transition duration-200 hover:bg-indigo-600"
