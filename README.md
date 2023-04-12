@@ -10,6 +10,9 @@ The api is hosted on [Render](https://render.com/).
 
 **Github**: [_Link_](https://github.com/ananyo141/cipherschools-profile-page/)
 
+_NOTE: As the server is hosted on free tier, it may take upto 2 minutes when
+serving the first api request._
+
 ## Features list:
 
 **Backend:**
@@ -32,14 +35,12 @@ The api is hosted on [Render](https://render.com/).
 
 **Backend:**
 
--
 - Node-ExpressJS,
 - MongoDB (NoSQL Database)
 - JWT Authentication
 
 **Frontend:**
 
--
 - ReactJS
 - Redux Toolkit with React bindings
 
