@@ -19,7 +19,7 @@ function App() {
   }, [isLoggedIn]);
 
   return (
-    <div className="App">
+    <div className="App overflow-clip">
       <Router>
         {isLoggedIn && (
           <div className="relative z-50 h-12">
