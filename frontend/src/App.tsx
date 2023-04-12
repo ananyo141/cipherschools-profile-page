@@ -20,10 +20,12 @@ function App() {
 
   return (
     <div className="App">
-      <div className="relative z-50 h-12">
-        <Navbar className="fixed w-full bg-white" />
-      </div>
       <Router>
+        {isLoggedIn && (
+          <div className="relative z-50 h-12">
+            <Navbar className="fixed w-full bg-white" />
+          </div>
+        )}
         <Routes>
           <Route
             path="/"

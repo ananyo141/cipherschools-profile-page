@@ -4,12 +4,17 @@ import { GoSettings } from "react-icons/go";
 import { FaCopyright } from "react-icons/fa";
 
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
+import { useAppDispatch } from "../hooks/useReduxHooks";
+import { logout } from "../state/features/login/loginSlice";
 
 type Props = {
   className?: string;
 };
 
 const Navbar = (props: Props) => {
+  const dispatch = useAppDispatch();
+
   return (
     <nav className={props.className}>
       <div className="my-2 flex justify-between px-4">
@@ -38,7 +43,28 @@ const Navbar = (props: Props) => {
               <span className="badge-primary badge badge-xs indicator-item bg-yellow-500"></span>
             </div>
           </button>
-          <img src={logo} className="mx-4 h-7 w-7" alt="logo" />
+          <div className="tooltip tooltip-bottom" data-tip="Logout Here">
+            <div className="dropdown">
+              <img
+                tabIndex={0}
+                src={logo}
+                className="mx-4 h-7 w-7 cursor-pointer"
+                alt="logo"
+              />
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu rounded-box w-52 bg-base-100 p-2 shadow"
+              >
+                <li
+                  onClick={() => {
+                    dispatch(logout());
+                  }}
+                >
+                  <Link to="/login">Logout</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
           <FaCopyright color="lime" className="scale-150" />
           <p>234</p>
           <div className="form-control">
