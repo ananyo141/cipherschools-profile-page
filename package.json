@@ -1,7 +1,6 @@
 {
   "name": "cipherschools-profile-page",
   "version": "1.0.0",
-  "main": "index.js",
   "author": "Ananyobrata Pal <ananyo141@gmail.com>",
   "license": "MIT",
   "devDependencies": {
