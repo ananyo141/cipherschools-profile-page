@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAppDispatch } from "../../hooks/useReduxHooks";
 import { loginUser } from "../../state/features/login/loginSlice";
 import { Link, useNavigate } from "react-router-dom";
+import loginImage from "../../assets/loginImage.jpg";
 
 type Props = {};
 
@@ -16,10 +17,7 @@ const LoginPage = (props: Props) => {
     event.preventDefault();
     try {
       await dispatch(loginUser({ email, password })).unwrap();
-      setTimeout(() => {
-        navigator("/"); // navigate to home page
-      }, 1250);
-      console.log("successful");
+      navigator("/"); // navigate to home page
     } catch (err: any) {
       console.log("unsuccessful", err);
     }
@@ -30,9 +28,9 @@ const LoginPage = (props: Props) => {
       {/* component */}
       <div className="hidden h-screen w-full bg-indigo-600 md:w-1/2 lg:block xl:w-2/3">
         <img
-          src="https://source.unsplash.com/random"
-          alt=""
-          className="h-full w-full object-cover"
+          src={loginImage}
+          alt="sky"
+          className="h-full w-full bg-cover bg-center"
         />
       </div>
       <div className="flex h-screen w-full items-center justify-center bg-white px-6 md:mx-auto md:w-1/2 md:max-w-md lg:max-w-full lg:px-16 xl:w-1/3 xl:px-12">

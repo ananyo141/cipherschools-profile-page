@@ -74,3 +74,17 @@ export const userUpdateInterests = async (
   }
   return response.data;
 };
+
+export const userFollowers = async (accessToken: string): Promise<any> => {
+  const [error, response] = await resolve(
+    axios.get(`${USERSURL}/followers`, {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    })
+  );
+  if (error) {
+    throw error;
+  }
+  return response.data;
+};

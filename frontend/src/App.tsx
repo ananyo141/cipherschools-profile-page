@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import LoginPage from "./pages/Login";
 import ProfilePage from "./pages/Profile";
+import Followers from "./pages/Followers";
 import Signup from "./pages/Signup";
 import NoPage from "./pages/NoPage";
 
@@ -33,8 +34,7 @@ function App() {
           />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<Signup />} />
-          <Route path="/profile" element={<div>Profile</div>} />
-          <Route path="/followers" element={<div>follwers</div>} />
+          <Route path="/followers" element={<Followers />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
       </Router>

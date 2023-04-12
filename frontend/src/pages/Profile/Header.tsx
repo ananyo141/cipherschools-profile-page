@@ -2,6 +2,7 @@ import { useAppSelector } from "../../hooks/useReduxHooks";
 import { MdModeEdit } from "react-icons/md";
 
 import logo from "../../assets/logo.png";
+import { Link } from "react-router-dom";
 
 type Props = {
   className?: string;
@@ -29,9 +30,9 @@ const Header = (props: Props) => {
             </div>
           </div>
           <div className="flex items-center bg-gradient-to-r from-transparent to-white px-20 py-6">
-            <h3 className="text-xl font-medium">
+            <Link to="/followers" className="text-xl font-medium">
               {followers?.length ?? 0} Followers
-            </h3>
+            </Link>
           </div>
         </div>
       </div>

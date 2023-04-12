@@ -24,7 +24,24 @@ const Navbar = (props: Props) => {
           <h1>CipherSchools</h1>
           <AiOutlineCompass className="ml-5" />
           <h2>Browse</h2>
-          <AiOutlineDown className="cursor-pointer" />
+          <div className="dropdown dropdown-hover">
+            <label tabIndex={0}>
+              <AiOutlineDown className="block cursor-pointer" />
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu rounded-box w-52 bg-base-100 p-2 shadow"
+            >
+              <li className="cursor-pointer">App Development</li>
+              <li className="cursor-pointer">Web Development</li>
+              <li className="cursor-pointer">Game Development</li>
+              <li className="cursor-pointer">Data Structures</li>
+              <li className="cursor-pointer">Programming</li>
+              <li className="cursor-pointer">Machine Learning</li>
+              <li className="cursor-pointer">Data Science</li>
+              <li className="cursor-pointer">Others</li>
+            </ul>
+          </div>
         </div>
         {/* right side */}
         <div className="flex items-center justify-center gap-4">
