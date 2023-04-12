@@ -34,12 +34,13 @@ export const userUpdate = async (
 
 export const userUpdatePassword = async (
   accessToken: string,
-  password: string
+  oldPassword: string,
+  newPassword: string
 ): Promise<any> => {
   const [error, response] = await resolve(
-    axios.patch(
+    axios.post(
       `${USERSURL}/password`,
-      { password },
+      { oldPassword, newPassword },
       {
         headers: {
           authorization: `Bearer ${accessToken}`,

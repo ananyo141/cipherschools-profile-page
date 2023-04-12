@@ -16,11 +16,21 @@ export const userUpdate = createAsyncThunk(
   }
 );
 
+interface UserUpdatePasswordPayload {
+  accessToken: string;
+  oldPassword: string;
+  newPassword: string;
+}
+
 export const userUpdatePassword = createAsyncThunk(
   "user/userUpdatePassword",
-  async (payload: { password: string; accessToken: string }, thunkAPI) => {
+  async (payload: UserUpdatePasswordPayload, thunkAPI) => {
     const [error, response] = await resolve(
-      UserApi.userUpdatePassword(payload.accessToken, payload.password)
+      UserApi.userUpdatePassword(
+        payload.accessToken,
+        payload.oldPassword,
+        payload.newPassword
+      )
     );
     if (error) return thunkAPI.rejectWithValue(error.message);
     return response;
