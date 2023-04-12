@@ -1,18 +1,50 @@
+import { useEffect, useState } from "react";
 import SectionHeading from "../../components/SectionHeading";
 import EditButton from "../../components/EditButton";
-import { useAppSelector } from "../../hooks/useReduxHooks";
+import { useAppSelector, useAppDispatch } from "../../hooks/useReduxHooks";
+import { userUpdate } from "../../state/features/login/userThunks";
 
 type Props = {};
 
 const ProfessionalInfo = (props: Props) => {
-  const { highestEducation, currentWork } = useAppSelector(
+  const { highestEducation, currentWork, accessToken } = useAppSelector(
     (state) => state.login
   );
+  const [isEditing, setIsEditing] = useState(false);
+  const [highestEducationText, setHighestEducationText] = useState(
+    highestEducation ?? ""
+  );
+  const [currentWorkText, setCurrentWorkText] = useState(currentWork ?? "");
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    setHighestEducationText(highestEducation ?? "");
+    setCurrentWorkText(currentWork ?? "");
+  }, [highestEducation, currentWork]);
+
+  const handleEditClick = () => {
+    if (isEditing && accessToken) {
+      dispatch(
+        userUpdate({
+          attrs: {
+            highestEducation: highestEducationText,
+            currentWork: currentWorkText,
+          },
+          accessToken: accessToken,
+        })
+      );
+    }
+    setIsEditing(!isEditing);
+  };
+
   return (
     <div>
       <div className="flex justify-between">
         <SectionHeading>Professional Information</SectionHeading>
-        <EditButton />
+        <EditButton
+          onClick={handleEditClick}
+          label={isEditing ? "Save" : "Edit"}
+        />
       </div>
       <div className="flex gap-4">
         <div className="w-1/2">
@@ -20,6 +52,8 @@ const ProfessionalInfo = (props: Props) => {
           <select
             className="my-2 w-full rounded-md p-3"
             defaultValue={highestEducation?.toString()}
+            onChange={(e) => setHighestEducationText(e.target.value)}
+            disabled={!isEditing}
           >
             <option value="none">None</option>
             <option value="highschool">High School</option>
@@ -33,6 +67,8 @@ const ProfessionalInfo = (props: Props) => {
           <select
             className="my-2 w-full rounded-md p-3"
             defaultValue={currentWork?.toString()}
+            onChange={(e) => setCurrentWorkText(e.target.value)}
+            disabled={!isEditing}
           >
             <option value="schooling">Schooling</option>
             <option value="college">College student</option>
