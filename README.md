@@ -17,19 +17,20 @@ serving the first api request._
 
 **Backend:**
 
-- [x] register user
-- [x] login user
-- [x] update user
-- [x] get followers (paginated)
-- [x] input validation / error handling
+- [x] Register user
+- [x] Login user
+- [x] Update user
+- [x] Get followers (paginated)
+- [x] Input validation / error handling
+- [x] Follow / unfollow users
 
 **Frontend:**
 
-- [x] cipher map
-- [x] profile details
-- [x] followers
-- [x] responsive
-- [x] profile page
+- [x] Cipher map
+- [x] Profile details
+- [x] Followers
+- [x] Responsive
+- [x] Profile page
 
 ## Tech Stack
 
@@ -43,6 +44,7 @@ serving the first api request._
 
 - ReactJS
 - Redux Toolkit with React bindings
+- DaisyUI for component library
 
 _The whole project is written in **TypeScript**._
 
