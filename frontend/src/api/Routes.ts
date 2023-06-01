@@ -1,5 +1,5 @@
 // start url
-export const HOSTURL = `https://api-cipherschools.onrender.com`;
+export const HOSTURL = `https://api-cipherschools.vercel.app`;
 export const BASEURL = `${HOSTURL}/api/v1`;
 
 // routes
